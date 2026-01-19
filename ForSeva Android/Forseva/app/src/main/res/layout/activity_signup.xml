@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/logoSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ForSeva"
+        android:textColor="@color/primary_blue"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"/>
+
+    <TextView
+        android:id="@+id/tvCreateAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create your Account"
+        android:textSize="18sp"
+        android:textColor="@color/dark_text"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/logoSignup"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+        android:id="@+id/etEmailSignup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/edit_text_bg"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvCreateAccount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/etPassSignup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:background="@drawable/edit_text_bg"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/etEmailSignup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/etConfirmPass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:background="@drawable/edit_text_bg"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/etPassSignup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSignUp"
+        style="@style/PrimaryButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:text="Sign up"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/etConfirmPass"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvLoginRedirect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already have an account? Sign In"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/btnSignUp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

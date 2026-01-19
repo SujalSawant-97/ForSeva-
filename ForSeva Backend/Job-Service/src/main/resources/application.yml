@@ -1,0 +1,34 @@
+#spring.application.name=Job-Service
+server:
+  port: 8084
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # OLD: org.springframework.kafka.support.serializer.JsonSerializer
+      # NEW:
+      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+  application:
+    name : Job-Service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/Job-Service
+    username: postgres
+    password: Sujal9730
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ # The URL of your Eureka Server
+    register-with-eureka: true
+    fetch-registry: true

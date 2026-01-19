@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.Forseva" parent="Theme.Material3.Light.NoActionBar">
+    </style>
+
+    <style name="Theme.Forseva" parent="Base.Theme.Forseva" />
+
+    <style name="PrimaryButtonStyle" parent="Widget.MaterialComponents.Button">
+    <item name="backgroundTint">@color/primary_blue</item>
+
+    <item name="android:textColor">@color/white</item>
+    <item name="android:textSize">16sp</item>
+    <item name="android:textStyle">bold</item>
+
+    <item name="android:insetTop">0dp</item>
+    <item name="android:insetBottom">0dp</item>
+    <item name="shapeAppearanceOverlay">@style/RoundedButton</item>
+</style>
+
+    <style name="RoundedButton">
+        <item name="cornerSize">8dp</item>
+    </style>
+</resources>

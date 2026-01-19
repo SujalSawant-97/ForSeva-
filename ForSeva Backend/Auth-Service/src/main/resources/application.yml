@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: Auth-Service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/Auth-Service
+    username: postgres
+    password: Sujal9730
+
+
+
+server:
+  port: 8081
+
+jwt:
+  secret: 9f3c7a1e8d2b4c6a0e7f5a9b1d8c2e4f6a7b9c0d3e5f1a2b4c6d8e9f0a1bhagshvjhdksjd
+
+eureka:
+  instance:
+      prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ # The URL of your Eureka Server
+    register-with-eureka: true
+    fetch-registry: true
+
