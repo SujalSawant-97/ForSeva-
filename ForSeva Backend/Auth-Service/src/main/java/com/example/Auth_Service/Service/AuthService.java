@@ -25,7 +25,8 @@ public class AuthService {
         if (repository.existsByEmail(user.getEmail())) {
             // Stop everything immediately. Do not save. Do not call User Service.
             throw new RuntimeException("Error: Email is already in use!");
-        }
+
+        }else{
         user.setPassword(passwordEncoder.encode(user.getPassword())); // [cite: 29, 163]
         AuthUser savedUser=repository.save(user);
         UserDto userDto=new UserDto();
@@ -38,8 +39,9 @@ public class AuthService {
             // Rollback if User Service is down
             repository.delete(savedUser);
             throw new RuntimeException("Signup failed: User Service is unavailable.");
+
         }
-        return "User registered successfully";
+        return "User registered successfully";}
     }
 
     public String login(String email, String password) {

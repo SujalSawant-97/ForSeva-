@@ -121,6 +121,7 @@ public class WorkerService {
         // 3. Map to DTO
         WorkerDetailSearch dto = new WorkerDetailSearch();
         dto.setId(worker.getUserId());
+        dto.setExperience(worker.getExperienceYears());
         dto.setName(worker.getName());
         dto.setProfileImageUrl(worker.getProfilePicture());
 

@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                     // 2. Check your custom 'success' flag from the backend
-                    if (apiResponse.isSuccess()) {
+                    if (response.isSuccessful()&& apiResponse.isSuccess()) {
                         // Success! Get the token from the header as discussed before
                         //String jwt = response.headers().get("Authorization");
                         String t=apiResponse.getData();
@@ -121,8 +121,9 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
                         finish();
+
                     } else {
-                        Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Invalid Credentials"+response.body(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }

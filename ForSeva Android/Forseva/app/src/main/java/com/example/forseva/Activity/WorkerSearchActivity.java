@@ -106,7 +106,7 @@ public class WorkerSearchActivity extends AppCompatActivity {
 
     private void performApiSearch(double lat, double lng) {
         WorkerApiService api = RetrofitClient.getRetrofitInstance(this).create(WorkerApiService.class);
-
+        progressBar.setVisibility(View.VISIBLE);
         // Making the call with your ApiResponse wrapper
         api.getFilteredWorkers(mainCategory, lat, lng)
                 .enqueue(new Callback<ApiResponse<List<WorkerModel>>>() {

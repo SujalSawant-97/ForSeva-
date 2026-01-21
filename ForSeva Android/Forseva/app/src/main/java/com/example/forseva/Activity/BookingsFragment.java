@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ public class BookingsFragment extends Fragment {
     private BookingAdapter adapter;
     private ProgressBar progressBar;
     private List<BookingModel> bookingList = new ArrayList<>();
+    private TextView tvempty;
 
     @Nullable
     @Override
@@ -44,6 +46,7 @@ public class BookingsFragment extends Fragment {
         // Initialize Views
         rvBookings = view.findViewById(R.id.rvBookings);
         progressBar = view.findViewById(R.id.pbBookings);
+        tvempty=view.findViewById(R.id.tvEmptyBok);
 
         // Setup RecyclerView
         rvBookings.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -82,6 +85,10 @@ public class BookingsFragment extends Fragment {
                             bookingList.clear();
                             bookingList.addAll(bookings);
                             adapter.notifyDataSetChanged();
+                        }
+                        else{
+                            rvBookings.setVisibility(View.GONE);
+                            tvempty.setVisibility(View.VISIBLE);
                         }
                     } else {
                         // Show backend error message

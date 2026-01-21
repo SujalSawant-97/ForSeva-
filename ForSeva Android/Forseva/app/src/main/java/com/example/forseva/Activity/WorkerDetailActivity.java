@@ -45,6 +45,7 @@ public class WorkerDetailActivity extends AppCompatActivity {
     private String workerName;
     private String subService;
     private  double hourlyRate;
+    private int distance;
     private String maincat;
 
     @Override
@@ -62,6 +63,7 @@ public class WorkerDetailActivity extends AppCompatActivity {
         // NEW: Receive these from the previous list screen
         subService = getIntent().getStringExtra("SUB_SERVICE"); // e.g., "Tap Repair"
         hourlyRate = getIntent().getDoubleExtra("HOURLY_RATE", 0.0);
+        distance=getIntent().getIntExtra("DISTANCE",0);
 
         // 3. Fetch Data
 
@@ -109,7 +111,7 @@ public class WorkerDetailActivity extends AppCompatActivity {
         tvPrice.setText("₹" + worker.getHourlyRate() + "/hr");
         tvDistance.setText(worker.getDistance());
         tvBio.setText(worker.getBio());
-        tvExperience.setText(worker.getExperience() + " Years");
+        tvExperience.setText(distance + " Years");
         tvJobsCompleted.setText(worker.getJobsDone() + "+");
 
         // 2. Load Cloudinary Image (NEW)

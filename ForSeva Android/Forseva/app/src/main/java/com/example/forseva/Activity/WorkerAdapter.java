@@ -69,6 +69,7 @@ public class WorkerAdapter extends RecyclerView.Adapter<WorkerAdapter.WorkerView
             intent.putExtra("MAINCATEGORY",maincat);
             intent.putExtra("SUB_SERVICE",subservice);
             intent.putExtra("HOURLY_RATE",worker.getHourlyRate());
+            intent.putExtra("DISTANCE",worker.getDistance());
             context.startActivity(intent);
         });
     }

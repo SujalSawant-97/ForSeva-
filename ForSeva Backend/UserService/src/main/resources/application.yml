@@ -4,6 +4,14 @@ server:
 spring:
   application:
     name: USER-SERVICE # This is the name the Gateway will use to route requests [cite: 10, 144]
+  datasource:
+    # We reference the variables defined in .env
+    url: ${NEON_URI}
+    username: ${NEON_USER}
+    password: ${NEON_PASS}
+    driver-class-name: org.postgresql.Driver
+
+  # JPA / Hibernate Settings
   jpa:
     hibernate:
       ddl-auto: update
@@ -11,12 +19,13 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-  datasource:
-    url: jdbc:postgresql://localhost:5432/User-Service
-    username: postgres
-    password: Sujal9730
+        # Optimization for Neon/Cloud DBs (Optional but recommended)
+        jdbc:
+          batch_size: 50
 
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/ # The URL of your Eureka Server

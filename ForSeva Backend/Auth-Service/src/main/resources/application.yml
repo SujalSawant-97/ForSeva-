@@ -1,6 +1,16 @@
 spring:
   application:
     name: Auth-Service
+
+  # Database Configuration
+  datasource:
+    # We reference the variables defined in .env
+    url: ${NEON_URI}
+    username: ${NEON_USER}
+    password: ${NEON_PASS}
+    driver-class-name: org.postgresql.Driver
+
+  # JPA / Hibernate Settings
   jpa:
     hibernate:
       ddl-auto: update
@@ -8,10 +18,9 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-  datasource:
-    url: jdbc:postgresql://localhost:5432/Auth-Service
-    username: postgres
-    password: Sujal9730
+        # Optimization for Neon/Cloud DBs (Optional but recommended)
+        jdbc:
+          batch_size: 50
 
 
 
@@ -19,7 +28,7 @@ server:
   port: 8081
 
 jwt:
-  secret: 9f3c7a1e8d2b4c6a0e7f5a9b1d8c2e4f6a7b9c0d3e5f1a2b4c6d8e9f0a1bhagshvjhdksjd
+  secret: ${JWT_SECRET}
 
 eureka:
   instance:

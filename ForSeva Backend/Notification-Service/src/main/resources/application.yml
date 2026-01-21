@@ -30,6 +30,14 @@ spring:
         #spring.json.trusted.packages: "*"
   application:
     name : NOTIFICATION-SERVICE
+  datasource:
+    # We reference the variables defined in .env
+    url: ${NEON_URI}
+    username: ${NEON_USER}
+    password: ${NEON_PASS}
+    driver-class-name: org.postgresql.Driver
+
+  # JPA / Hibernate Settings
   jpa:
     hibernate:
       ddl-auto: update
@@ -37,10 +45,9 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-  datasource:
-    url: jdbc:postgresql://localhost:5432/Notification-Service
-    username: postgres
-    password: Sujal9730
+        # Optimization for Neon/Cloud DBs (Optional but recommended)
+        jdbc:
+          batch_size: 50
 
 eureka:
   instance:
