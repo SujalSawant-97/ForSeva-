@@ -1,6 +1,16 @@
 pipeline {
     agent any
 
+    tools {
+            jdk 'jdk-17'
+            maven 'maven-3'
+        }
+
+    options {
+            timestamps()
+            disableConcurrentBuilds()
+        }
+
     environment {
         COMPOSE_PROJECT_NAME = "forseva"
     }
@@ -8,15 +18,25 @@ pipeline {
     stages {
 
         stage('Checkout Code') {
+             steps {
+                 echo 'Checking out source code...'
+                        checkout scm
+                 }
+             }
+
+        stage('Verify Tools') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/SujalSawant-97/ForSeva-.git'
+                 sh 'java -version'
+                 sh 'mvn -version'
+                 sh 'docker --version'
+                 sh 'docker-compose --version'
+                }
             }
-        }
 
         stage('Build Spring Boot JARs') {
             steps {
                 dir('ForSeva Backend') {
+                    echo 'Building all Spring Boot services...'
                     sh 'mvn clean package -DskipTests'
                 }
             }
@@ -25,7 +45,8 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 dir('ForSeva Backend') {
-                    sh 'docker-compose build'
+                    echo 'Building Docker images...'
+                     sh 'docker-compose build'
                 }
             }
         }
@@ -33,7 +54,8 @@ pipeline {
         stage('Deploy Containers') {
             steps {
                 dir('ForSeva Backend') {
-                    sh 'docker-compose down'
+                    echo 'Deploying containers...'
+                    sh 'docker-compose down || true'
                     sh 'docker-compose up -d'
                 }
             }
