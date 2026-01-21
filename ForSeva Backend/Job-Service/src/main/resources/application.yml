@@ -1,6 +1,6 @@
 #spring.application.name=Job-Service
-server:
-  port: 8084
+#server:
+  #port: 8084
 
 spring:
   kafka:

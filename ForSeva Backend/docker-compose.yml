@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
 
-  # -------------------- ZOOKEEPER --------------------
+  # ---------------- ZOOKEEPER ----------------
   zookeeper:
     image: confluentinc/cp-zookeeper:7.5.0
     container_name: zookeeper
@@ -14,7 +14,7 @@ services:
       - zookeeper_data:/var/lib/zookeeper/data
       - zookeeper_log:/var/lib/zookeeper/log
 
-  # -------------------- KAFKA --------------------
+  # ---------------- KAFKA ----------------
   kafka:
     image: confluentinc/cp-kafka:7.5.0
     container_name: kafka
@@ -26,13 +26,13 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     volumes:
       - kafka_data:/var/lib/kafka/data
 
-  # -------------------- SERVICE REGISTRY --------------------
+  # ---------------- EUREKA ----------------
   service-registry:
     build: ./service-registry
     container_name: service-registry
@@ -40,56 +40,68 @@ services:
     ports:
       - "8761:8761"
 
-  # -------------------- API GATEWAY --------------------
+  # ---------------- API GATEWAY ----------------
   api-gateway:
-    build: ./api-gateway
+    build: ./ApiGateway
     container_name: api-gateway
     restart: always
     ports:
       - "8080:8080"
     depends_on:
       - service-registry
+    env_file:
+      - .env.service-1
 
-  # -------------------- MICROSERVICES --------------------
+  # ---------------- MICROSERVICES ----------------
 
-  service-1:
-    build: ./service-1
-    container_name: service-1
+  Auth-Service:
+    build: ./Auth-Service
+    container_name: Auth-Service
     restart: always
     depends_on:
       - service-registry
+    env_file:
+      - .env.service-1
 
-  service-2:   # Kafka Producer
-    build: ./service-2
-    container_name: service-2
-    restart: always
-    depends_on:
-      - service-registry
-      - kafka
-
-  service-3:   # Kafka Consumer
-    build: ./service-3
-    container_name: service-3
+  Job-Service:   # Kafka Producer
+    build: ./Job-Service
+    container_name: Job-Service
     restart: always
     depends_on:
       - service-registry
       - kafka
+    env_file:
+      - .env.service-2
 
-  service-4:
-    build: ./service-4
-    container_name: service-4
+  Notification-Service:   # Kafka Consumer
+    build: ./Notification-Service
+    container_name: Notification-Service
     restart: always
     depends_on:
       - service-registry
+      - kafka
+    env_file:
+      - .env.service-3
 
-  service-5:
-    build: ./service-5
-    container_name: service-5
+  UserService:
+    build: ./UserService
+    container_name: UserService
     restart: always
     depends_on:
       - service-registry
+    env_file:
+      - .env.service-4
 
-# -------------------- VOLUMES --------------------
+  Woker-Service:
+    build: ./Woker-Service
+    container_name: Woker-Service
+    restart: always
+    depends_on:
+      - service-registry
+    env_file:
+      - .env.service-5
+
+# ---------------- VOLUMES ----------------
 volumes:
   kafka_data:
   zookeeper_data:
