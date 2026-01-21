@@ -6,6 +6,7 @@
     <file url="file://$PROJECT_DIR$/Job-Service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Notification-Service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/UserService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Woker-Service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-registry/src/main/java" charset="UTF-8" />
   </component>
 </project>

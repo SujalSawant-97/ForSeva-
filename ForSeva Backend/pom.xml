@@ -13,7 +13,7 @@
     <modules>
         <module>APIGateway</module>
         <module>Auth-Service</module>
-        <module>Auth-Service</module>
+        <module>Woker-Service</module>
         <module>Job-Service</module>
         <module>Notification-Service</module>
         <module>service-registry</module>
