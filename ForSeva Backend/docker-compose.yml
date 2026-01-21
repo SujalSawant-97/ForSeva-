@@ -50,7 +50,7 @@ services:
     depends_on:
       - service-registry
     env_file:
-      - .env.service-1
+      - .env.api-gateway
 
   # ---------------- MICROSERVICES ----------------
 
@@ -61,7 +61,7 @@ services:
     depends_on:
       - service-registry
     env_file:
-      - .env.service-1
+      - .env.auth-service
 
   Job-Service:   # Kafka Producer
     build: ./Job-Service
@@ -71,7 +71,7 @@ services:
       - service-registry
       - kafka
     env_file:
-      - .env.service-2
+      - .env.job-service
 
   Notification-Service:   # Kafka Consumer
     build: ./Notification-Service
@@ -81,7 +81,7 @@ services:
       - service-registry
       - kafka
     env_file:
-      - .env.service-3
+      - .env.notification-service
 
   UserService:
     build: ./UserService
@@ -90,7 +90,7 @@ services:
     depends_on:
       - service-registry
     env_file:
-      - .env.service-4
+      - .env.user-service
 
   Woker-Service:
     build: ./Woker-Service
@@ -99,7 +99,7 @@ services:
     depends_on:
       - service-registry
     env_file:
-      - .env.service-5
+      - .env.worker-service
 
 # ---------------- VOLUMES ----------------
 volumes:
