@@ -42,7 +42,7 @@ services:
 
   # ---------------- API GATEWAY ----------------
   api-gateway:
-    build: ./ApiGateway
+    build: ./APIGateway
     container_name: api-gateway
     restart: always
     ports:
