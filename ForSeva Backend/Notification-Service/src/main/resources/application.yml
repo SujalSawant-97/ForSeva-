@@ -3,7 +3,7 @@
 
 spring:
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS}
     consumer:
       group-id: notification-group   # Unique ID for this service
       auto-offset-reset: earliest    # If no history found, start from the beginning
@@ -54,7 +54,7 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/ # The URL of your Eureka Server
+      defaultZone: ${EUREKA_SERVER_URL} # The URL of your Eureka Server
     register-with-eureka: true
     fetch-registry: true
 

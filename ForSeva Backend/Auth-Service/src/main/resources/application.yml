@@ -35,7 +35,7 @@ eureka:
       prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/ # The URL of your Eureka Server
+      defaultZone: ${EUREKA_SERVER_URL} # The URL of your Eureka Server
     register-with-eureka: true
     fetch-registry: true
 
